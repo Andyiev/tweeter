@@ -15,9 +15,26 @@ html {
  */
 
 body {
-  color: #545149;
-  background-color: #f4f1ec;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #312f2b;
+  background-color:rgb(125, 128, 136);
   font-size: 24px;
+}
+.fontTweeter {
+  font-family: 'Bungee', cursive;
+}
+
+main {
+  display: flex;
+  width: 100%;
+  margin: 1em 1em 2em 2em;
+	background-color:rgb(125, 128, 136);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: 90%;
 }
 
 /*

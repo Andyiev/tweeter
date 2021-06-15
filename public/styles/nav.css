@@ -1,0 +1,23 @@
+.navbar {
+  display: flex;
+  height: 120px;
+  background-color: #404a6b;
+  color: #FFFFFFFF;
+  width: 100%;
+  padding: 1.5em;
+  justify-content: space-between;
+  position: sticky;
+}
+
+.navbarsub {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.fa-angle-double-down {
+  display: flex;
+  color: red;
+  align-self: center;
+  padding-bottom: 10px;
+}
