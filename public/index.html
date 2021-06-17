@@ -16,15 +16,22 @@
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/tweet-container.css" type="text/css" />
     
     <!-- adding Font Awesome library for double-down icon-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js"></script>
+
+    <script>
+      let timeFrom = timeago.format(1473245023718);
+      console.log(timeFrom);
+    </script>
   </head>
   
   <body>
@@ -51,7 +58,7 @@
       <section class="new-tweet">
         
         <form method="POST" action="/tweets">
-          <label for="tweet-text"><Strong>What are you humming about?</Strong></label>
+          <label for="tweet-text"><Strong>What is better - Winter, Spring, Summer or Autumn?</Strong></label>
           <textarea name="text" id="tweet-text"></textarea>
           <div>
             <button type="submit">Tweet</button>
@@ -59,6 +66,51 @@
           </div>
         </form>
       </section>
+      <section class="tweet-container">
+        <article class="tweet">
+          <div class=username> 
+            <span><img src="https://icons.iconarchive.com/icons/ph03nyx/super-mario/48/Hat-Mario-icon.png" width="30px" height="30px">The name</span>
+            <span>@the username</span>
+          </div>
+
+          <div class=text-in></div>
+            <p>This is some text inside of the tweet container.</p>
+          </div>
+            <dev class="tweet-bottom"></dev>
+            
+            <footer class="tweet-footer">
+              <span>Time</span>
+              <dev class="tweet-emoji">
+                
+                <i class="fas fa-flag"></i>
+                <i class="fas fa-retweet"></i>
+                <i class="fas fa-heart"></i>
+              </dev>
+            </footer>
+        </article>
+        <article class="tweet">         
+          <div class=username> 
+            
+            <span><img src="https://icons.iconarchive.com/icons/ph03nyx/super-mario/48/Hat-Mario-icon.png" width="30px" height="30px">New name</span>
+            <span>@username</span>
+          </div>
+
+          <div class=text-in></div>
+            <p>This is some text inside of the tweet container.</p>
+          </div>
+            <dev class="tweet-bottom"></dev>
+            
+            <footer class="tweet-footer">
+              <span>Time</span>
+              <dev class="tweet-emoji">
+                
+                <i class="fas fa-flag"></i>
+                <i class="fas fa-retweet"></i>
+                <i class="fas fa-heart"></i>
+              </dev>
+            </footer>
+        </article>
+        </section>
     </main>
   </body>
   <script src="/scripts/composer-char-counter.js"></script>
