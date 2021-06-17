@@ -9,6 +9,7 @@ article-tweet-header {
   top: 114px;
 
 }
+
 .tweet-container {
   width: 100%;
   display: flex;
@@ -39,7 +40,9 @@ article-tweet-header {
   flex-direction: row;
   font-size: 14px;
 }
+
 .tweet-footer {
+  padding-top:.5em;
   display: flex;
   justify-content: space-between;
   border-top: 3px solid;
