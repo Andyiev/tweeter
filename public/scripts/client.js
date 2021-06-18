@@ -15,6 +15,7 @@ $(document).ready(function () {
       console.log(" Too much!");
     } else {
       alert("Submitted");
+      ///console.log(" -------- ", $("#tweet-text").val());
     $.post("/tweets", $(".new-tweet form").serialize())
       .then(() => {
         loadtweets();
@@ -28,11 +29,20 @@ $(document).ready(function () {
   const loadtweets = function() {
     $.ajax('/tweets', { method: 'GET', dataType: "json" })
       .then(function (data) {
-        console.log('Success: ',data);
+        //console.log('Success: ',data);
         renderTweets(data);
     });
   };
-  
+
+  const escape = function (str) {
+    //console.log(" this inside of escape - INPUT ", str);
+    let div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    //console.log(" this inside of escape - DIV ", div);
+    //console.log(" this inside of escape - div.innerHTML - ", div.innerHTML);
+    return div.innerHTML;
+  };
+    
   loadtweets();
 
   const renderTweets = function (tweets) {
@@ -54,7 +64,7 @@ $(document).ready(function () {
     <span>"${tweet.user.handle}"</span>
   </div>
   <div class=text-in></div>
-    <p>"${tweet.content.text}"</p>
+    <p>"${escape(tweet.content.text)}"</p>
   </div>
     <dev class="tweet-bottom"></dev>
     <footer class="tweet-footer">
