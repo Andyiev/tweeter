@@ -7,14 +7,18 @@ $(document).ready(function () {
 
   $(".new-tweet form").submit(function (event) {
     event.preventDefault()
+    $(".errorMessages").slideUp("slow");
     if ($("#tweet-text").val().length < 1) {
-      alert("The field cannot be empty!");
+      $(".errorMessages").text("Sorry, this field cannot be empty! Please type.");
+      $(".errorMessages").slideDown("slow");
+
       console.log(" Empty field!");
     } else if ($("#tweet-text").val().length > 140) {
-      alert("There are to many characters. Please do not type!");
+      $(".errorMessages").text("There are to many characters. It should not be more then 140.");
+      $(".errorMessages").slideDown("slow");
       console.log(" Too much!");
     } else {
-      alert("Submitted");
+      //alert("Submitted");
       ///console.log(" -------- ", $("#tweet-text").val());
     $.post("/tweets", $(".new-tweet form").serialize())
       .then(() => {
