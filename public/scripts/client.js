@@ -7,13 +7,21 @@ $(document).ready(function () {
 
   $(".new-tweet form").submit(function (event) {
     event.preventDefault()
-    alert("Submitted");
+    if ($("#tweet-text").val().length < 1) {
+      alert("The field cannot be empty!");
+      console.log(" Empty field!");
+    } else if ($("#tweet-text").val().length > 140) {
+      alert("There are to many characters. Please do not type!");
+      console.log(" Too much!");
+    } else {
+      alert("Submitted");
     $.post("/tweets", $(".new-tweet form").serialize())
       .then(() => {
       })
       .catch((err) => {
         console.log(`err loading articles: ${err}`)
       })
+    }
   });
 
   const loadtweets = function() {
