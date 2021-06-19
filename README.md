@@ -3,8 +3,14 @@
 Tweeter is a simple, single-page Twitter clone.
 It uses jQuery, HTML5, and plain CSS3.
 
+## Final Product
 Type your thoughts and compare them with others' ones!
 There are so many ideas!
+
+!["Tweeter - main page."](https://github.com/Andyiev/tweeter/blob/master/public/images/Tweeter-mainpage.png)
+!["Tweeter - type and tweet! (big screen)"](https://github.com/Andyiev/tweeter/blob/master/public/images/Tweeter-typeandtweet.png)
+!["Tweeter - type and tweet! (small screen)"](https://github.com/Andyiev/tweeter/blob/master/public/images/Tweeter-typeandtweetsmall.png)
+
 
 ## Getting Started
 
