@@ -1,5 +1,7 @@
 .new-tweet {
   width: 100%;
+  background-color:lightslategrey;
+  background-image: url("/images/background.png");
 }
 
 .errorMessages {

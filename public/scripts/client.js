@@ -3,10 +3,11 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-$(document).ready(function () {
+$(document).ready(function() {
 
+  // submits a new tweet
   $(".new-tweet form").submit(function (event) {
-    event.preventDefault()
+    event.preventDefault();
     $(".errorMessages").slideUp("slow");
     if ($("#tweet-text").val().length < 1) {
       $(".errorMessages").text("Sorry, this field cannot be empty! Please type.");
@@ -19,43 +20,47 @@ $(document).ready(function () {
     } else {
       //alert("Submitted");
       ///console.log($("#tweet-text").val());
-    $.post("/tweets", $(".new-tweet form").serialize())
-      .then(() => {
-        loadtweets();
-      })
-      .catch((err) => {
-        console.log(`err loading articles: ${err}`)
-      })
-    $("form")[0].reset();
-    $(".counter").html("140");
+      $.post("/tweets", $(".new-tweet form").serialize())
+        .then(() => {
+          loadtweets();
+        })
+        .catch((err) => {
+          console.log(`err loading articles: ${err}`);
+        });
+      $("form")[0].reset();
+      $(".counter").html("140");
     }
   });
 
+  // calls to show the submitted tweet
   const loadtweets = function() {
     $.ajax('/tweets', { method: 'GET', dataType: "json" })
       .then(function (data) {
         //console.log('Success: ',data);
         renderTweets(data);
-    });
+      });
   };
 
-  const escape = function (str) {
+  // protects from xss when submitting a new tweet
+  const escape = function(str) {
     //console.log(" this inside of escape - INPUT ", str);
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
-    
-  const renderTweets = function (tweets) {
+  
+  // cals the rendering tweets to the screen with a new one just submitted
+  const renderTweets = function(tweets) {
     $(".tweet-container").empty();
     for (let oneTweet of tweets) {
       // calls createTweetElement for each tweet
-      // takes return value and appends it to the tweets container
+      // takes return value and appends it to the tweets container at the begginng of it
       $('.tweet-container').prepend(createTweetElement(oneTweet));
     }
-  }
+  };
   
-  const createTweetElement = function (tweet) {
+  // renders tweets on the screen
+  const createTweetElement = function(tweet) {
     const html = ` 
     <article class="tweet">
     <div class=username> 
@@ -76,10 +81,9 @@ $(document).ready(function () {
     </footer>
     </article>`;
     return html;
-    //return $tweet.append(html); Was for one element for previouse task
   };
   
-  // Load of existing database - samples
+  // loads tweet samples from initial-tweets.json when app starts
   loadtweets();
 
 });
