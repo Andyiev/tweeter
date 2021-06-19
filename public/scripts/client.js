@@ -11,15 +11,14 @@ $(document).ready(function () {
     if ($("#tweet-text").val().length < 1) {
       $(".errorMessages").text("Sorry, this field cannot be empty! Please type.");
       $(".errorMessages").slideDown("slow");
-
-      console.log(" Empty field!");
+      //console.log(" Empty field!");
     } else if ($("#tweet-text").val().length > 140) {
       $(".errorMessages").text("There are to many characters. It should not be more then 140.");
       $(".errorMessages").slideDown("slow");
-      console.log(" Too much!");
+      //console.log(" Too much!");
     } else {
       //alert("Submitted");
-      ///console.log(" -------- ", $("#tweet-text").val());
+      ///console.log($("#tweet-text").val());
     $.post("/tweets", $(".new-tweet form").serialize())
       .then(() => {
         loadtweets();
@@ -27,6 +26,8 @@ $(document).ready(function () {
       .catch((err) => {
         console.log(`err loading articles: ${err}`)
       })
+    $("form")[0].reset();
+    $(".counter").html("140");
     }
   });
 
@@ -42,45 +43,43 @@ $(document).ready(function () {
     //console.log(" this inside of escape - INPUT ", str);
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
-    //console.log(" this inside of escape - DIV ", div);
-    //console.log(" this inside of escape - div.innerHTML - ", div.innerHTML);
     return div.innerHTML;
   };
     
-  loadtweets();
-
   const renderTweets = function (tweets) {
-    // loops through tweets
     $(".tweet-container").empty();
     for (let oneTweet of tweets) {
       // calls createTweetElement for each tweet
       // takes return value and appends it to the tweets container
-      $('.tweet-container').append(createTweetElement(oneTweet));
+      $('.tweet-container').prepend(createTweetElement(oneTweet));
     }
   }
-
+  
   const createTweetElement = function (tweet) {
-    //const $tweet = $(".tweet-container");
     const html = ` 
-  <article class="tweet">
-  <div class=username> 
+    <article class="tweet">
+    <div class=username> 
     <span><img src="${tweet.user.avatars}">"${tweet.user.name}"</span>
     <span>"${tweet.user.handle}"</span>
-  </div>
-  <div class=text-in></div>
+    </div>
+    <div class=text-in></div>
     <p>"${escape(tweet.content.text)}"</p>
-  </div>
+    </div>
     <dev class="tweet-bottom"></dev>
     <footer class="tweet-footer">
-      <span id="footer-date">"${tweet.created_at}"</span>
-      <dev class="tweet-emoji">
-        <i class="fas fa-flag"></i>
-        <i class="fas fa-retweet"></i>
-        <i class="fas fa-heart"></i>
-      </dev>
+    <span id="footer-date">${timeago.format(tweet.created_at)}</span>
+    <dev class="tweet-emoji">
+    <i class="fas fa-flag"></i>
+    <i class="fas fa-retweet"></i>
+    <i class="fas fa-heart"></i>
+    </dev>
     </footer>
-  </article>`;
+    </article>`;
     return html;
     //return $tweet.append(html); Was for one element for previouse task
   };
+  
+  // Load of existing database - samples
+  loadtweets();
+
 });
